@@ -1,53 +1,39 @@
 package ar.edu.unq.uis.rankIt.dominio
 
+import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.List
 import java.util.ArrayList
 
+@Accessors
 class Sistema {
-	var servicios = new ArrayList<Prestacion>
-	var lugares = new ArrayList<Prestacion>
-	var calificaciones = new ArrayList<Prestacion>
-
-	def getServicios() {
-		servicios
+	List<Prestacion> servicios 
+	List<Prestacion> lugares
+	List<Prestacion> calificaciones
+	
+	new() {
+		servicios = new ArrayList<Prestacion>
+		lugares = new ArrayList<Prestacion>
+		calificaciones = new ArrayList<Prestacion>
 	}
 
-	def getLugares() {
-		lugares
+	def void agregarServicio(String nombre) {
+		var servicio = new Prestacion
+		servicio.nombre = nombre
+		servicios.add(servicio)
 	}
 
-	def getCalificaciones() {
-		calificaciones
+	def void agregarLugar(String nombre) {
+		var lugar = new Prestacion
+		lugar.setNombre(nombre)
+		lugares.add(lugar)
+	}
+	
+	def void eliminarServicio(String nombreServicio) {
+		servicios = servicios.filter[it | it.nombre != nombreServicio].toList
+	}
+	
+	def void eliminarLugar(String nombreLugar) {
+		lugares = lugares.filter[it | it.nombre != nombreLugar].toList
 	}
 
-	def void agregarServicio(String unNombre) {
-		var nvoServicio = new Prestacion
-		nvoServicio.setNombre(unNombre)
-		servicios.add(nvoServicio)
-	}
-
-	def void agregarLugar(String unNombre) {
-		var nvoLugar = new Prestacion
-		nvoLugar.setNombre(unNombre)
-		lugares.add(nvoLugar)
-	}
-
-	def void eliminarServicio(String unNombre) {
-		var listaFiltrada = new ArrayList<Prestacion>
-		for (Prestacion prestacion : servicios) {
-			if (!prestacion.getNombre.equals(unNombre)) {
-				listaFiltrada.add(prestacion)
-			}
-		}
-		servicios = listaFiltrada
-	}
-
-	def eliminarLugar(String unNombre) {
-		var listaFiltrada = new ArrayList<Prestacion>
-		for (Prestacion prestacion : lugares) {
-			if (!prestacion.getNombre.equals(unNombre)) {
-				listaFiltrada.add(prestacion)
-			}
-		}
-		lugares = listaFiltrada
-	}
 }
