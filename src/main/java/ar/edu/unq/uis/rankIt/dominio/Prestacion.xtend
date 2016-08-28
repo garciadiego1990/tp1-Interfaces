@@ -10,14 +10,57 @@ class Prestacion {
 	Calendar fechaDeCalificacion = null
 	Usuario evaluador = null
 	var esOfensivo = false
-	
-	
-	def void setNombre(String unNombre){
+
+	def void setNombre(String unNombre) { 
 		nombre = unNombre
 	}
-	
-	def getNombre(){
+
+	def getNombre() { 
 		nombre
+	}
+
+	def void setEstaHabilitado(boolean nvoBooleano){
+		estaHabilitado = nvoBooleano
+	}
+	
+	def getEstaHabilitado() {
+		estaHabilitado
+	}
+
+	def getFechaDeRegistro() {
+		fechaDeRegistro
+	}
+
+	def void setCalificacion(int nvaCalificacion) {
+		calificacion = nvaCalificacion
+	}
+
+	def getCalificacion() {
+		calificacion
+	}
+
+	def void setFechaDeCalificacion(Calendar nvaFecha) {
+		fechaDeCalificacion = nvaFecha
+	}
+
+	def getFechaDeCalificacion() {
+		fechaDeCalificacion
+	}
+	
+	def void setEvaluador(Usuario nvoEvaluador){
+		evaluador = nvoEvaluador
+	}
+	
+	def getEvaluador(Usuario nvoEvaluador){
+		evaluador
+	}
+	
+	def void setEsOfensivo(boolean nvoBooleano){
+		esOfensivo = nvoBooleano
+	}
+	
+	def getEsOfensivo(){
+		esOfensivo
 	}
 	
 	
