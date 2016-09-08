@@ -6,26 +6,63 @@ import java.util.ArrayList
 
 @Accessors
 class Sistema {
-	List<Prestacion> servicios 
-	List<Prestacion> lugares
-	List<Prestacion> calificaciones
+	List<Publicacion> servicios 
+	List<Publicacion> lugares
+	// manejador de publicaciones
+	List<Usuario> usuarios
 	
 	new() {
-		servicios = new ArrayList<Prestacion>
-		lugares = new ArrayList<Prestacion>
-		calificaciones = new ArrayList<Prestacion>
+		servicios = new ArrayList<Publicacion>
+		lugares = new ArrayList<Publicacion>
+		usuarios = new ArrayList<Usuario>
 	}
 
-	def void agregarServicio(String nombre) {
-		var servicio = new Prestacion
-		servicio.nombre = nombre
+	def void agregarServicio(Publicacion servicio) {
 		servicios.add(servicio)
 	}
 
-	def void agregarLugar(String nombre) {
-		var lugar = new Prestacion
-		lugar.setNombre(nombre)
+	def void agregarLugar(Publicacion lugar) {
 		lugares.add(lugar)
+	}
+	
+	def void agregarUsuario(Usuario u) {
+		usuarios.add(u)
+	}
+	
+	def int usuariosActivos() {
+		usuarios.filter[it | it.estaActivo].size
+	}
+	
+	def int usuariosActivos() {
+		usuarios.filter[it | it.estaActivo].size
+	}
+	
+	def void agregarCalificacion(Calificacion c, Publicacion p) {
+		p.agregar(c)
+	}
+	
+	def void eliminarCalificacion(Calificacion c, Publicacion p) {
+		p.eliminar(c)
+	}
+	
+	def int calificacionesRegistradas() {
+		return this.calificacionesDeServicios + (this.calificacionesDeLugares)
+	}
+	
+	def int calificacionesDeServicios() {
+		var ret  = 0
+		for(Publicacion p : this.servicios) {
+			ret += p.calificaciones.size
+		}
+			return ret
+	}
+	
+	def int calificacionesDeLugares() {
+		var ret  = 0
+		for(Publicacion p : this.lugares) {
+			ret += p.calificaciones.size
+		}
+			return ret
 	}
 	
 	def void eliminarServicio(String nombreServicio) {
@@ -35,5 +72,25 @@ class Sistema {
 	def void eliminarLugar(String nombreLugar) {
 		lugares = lugares.filter[it | it.nombre != nombreLugar].toList
 	}
+	
+	def int lugaresHabilitados() {
+		return lugares.filter[it | it.estaHabilitado].size
+	}
+	
+	def int lugaresDeshabilitados() {
+		return lugares.filter[it | !it.estaHabilitado].size
+	}
+	
+	def int serviciosHabilitados() {
+		return servicios.filter[it | it.estaHabilitado].size
+	}
+	
+	def int serviciosDeshabilitados() {
+		return servicios.filter[it | !it.estaHabilitado].size
+	}
+	
+	
+	
+	
 
 }

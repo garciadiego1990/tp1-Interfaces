@@ -1,5 +1,7 @@
 package ar.edu.unq.uis.rankIt.dominio
 
+import java.util.Date
+
 class Calificacion {
 	
 	Publicacion publicacionEvaluada;

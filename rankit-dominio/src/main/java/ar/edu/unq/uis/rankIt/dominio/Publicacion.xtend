@@ -2,19 +2,28 @@ package ar.edu.unq.uis.rankIt.dominio
 
 import java.util.Date
 import org.eclipse.xtend.lib.annotations.Accessors
+import java.util.List
 
 @Accessors
-class Prestacion {
+class Publicacion {
 	String nombre 
 	Boolean estaHabilitado 
 	Date fechaDeRegistro 
-	Integer calificacion 
+	List<Calificacion> calificaciones 
 	Date fechaDeCalificacion 
 	Usuario evaluador 
 	Boolean esOfensivo
 	
-	new() {
-		
+	new(String nombre) {
+		this.nombre = nombre	
+	}
+	
+	def void agregar(Calificacion c) {
+		this.calificaciones.add(c)
+	}
+	
+	def void eliminar(Calificacion c) {
+		this.calificaciones.remove(c)
 	} 	
 	
 }
