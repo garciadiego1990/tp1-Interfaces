@@ -33,6 +33,7 @@ class Sistema {
 		usuarios.filter[it | it.estaActivo].size
 	}
 	
+	
 	def int usuariosActivos() {
 		usuarios.filter[it | it.estaActivo].size
 	}
